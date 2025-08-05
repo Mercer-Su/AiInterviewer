@@ -22,7 +22,7 @@ package org.example.grace.result;
 public class IMOOCJSONResult {
 
     // 响应业务状态
-    private Integer status;;
+    private Integer status;
 
     // 响应消息
     private String msg;
