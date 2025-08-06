@@ -69,4 +69,16 @@ public class QuestionLibController extends BaseInfoProperties {
         questionLibService.setDisplayOrNot(questionLibId, YesOrNo.NO.type);
         return GraceJSONResult.ok();
     }
+
+    /**
+     * @Description: 删除指定的面试题
+     * @param questionLibId
+     * @return GraceJSONResult
+     */
+    @PostMapping("delete")
+    public GraceJSONResult delete(@RequestParam String questionLibId) {
+        if (StringUtils.isBlank(questionLibId)) return GraceJSONResult.error();
+        questionLibService.delete(questionLibId);
+        return GraceJSONResult.ok();
+    }
 }
