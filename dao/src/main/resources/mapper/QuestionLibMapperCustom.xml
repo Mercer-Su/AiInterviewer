@@ -29,7 +29,7 @@
             </if>
     </select>
 
-    <select id="queryRandomQuestion" parameterType="map" resultType="com.juege.pojo.vo.InitQuestionsVO">
+    <select id="queryRandomQuestion" parameterType="map" resultType="org.example.pojo.vo.InitQuestionsVO">
         SELECT * FROM question_lib WHERE question_lib.is_on=1 LIMIT #{paramMap.indexNum}, 1
     </select>
 
