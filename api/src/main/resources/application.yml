@@ -1,0 +1,34 @@
+server:
+  tomcat:
+    uri-encoding: utf-8
+    max-swallow-size: -1      # 不限制请求体的大小
+
+spring:
+  application:
+    name: ai-interviewer
+  profiles:
+    active: prod   # dev-开发环境，prod-生产环境，test-测试环境
+  servlet:
+    multipart:
+      max-file-size: 10MB         # 文件上传大小的限制，设置的最大值，不能超过，否则会报错
+      max-request-size: 10MB      # 文件最大请求限制，可用于批量上传
+
+# 日志级别
+logging:
+  level:
+    root: info
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: assign_id
+      banner: false
+      update-strategy: not_empty
+  mapper-locations: classpath*:/mapper/*.xml
+
+# 分页插件助手的配置
+pagehelper:
+  helper-dialect: MYSQL
+  support-methods-arguments: true
