@@ -6,6 +6,7 @@ import org.example.base.BaseInfoProperties;
 import org.example.grace.result.GraceJSONResult;
 import org.example.pojo.bo.QuestionLibBO;
 import org.example.serive.QuestionLibService;
+import org.example.utils.PagedGridResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,5 +27,22 @@ public class QuestionLibController extends BaseInfoProperties {
     public GraceJSONResult createOrUpdate(@RequestBody QuestionLibBO questionLibBO) {
         questionLibService.createOrUpdate(questionLibBO);
         return GraceJSONResult.ok();
+    }
+    /**
+     * @Description: 分页查询面试题库列表
+     * @param aiName
+     * @param question
+     * @param page
+     * @param pageSize
+     * @return GraceJSONResult
+     */
+    @GetMapping("list")
+    public GraceJSONResult list(@RequestParam String aiName,
+                                @RequestParam String question,
+                                @RequestParam(defaultValue = "1", name = "page") Integer page,
+                                @RequestParam(defaultValue = "10", name = "pageSize") Integer pageSize) {
+
+        PagedGridResult result = questionLibService.queryList(aiName, question, page, pageSize);
+        return GraceJSONResult.ok(result);
     }
 }
