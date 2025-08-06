@@ -5,7 +5,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.example.base.BaseInfoProperties;
 import org.example.enums.YesOrNo;
 import org.example.grace.result.GraceJSONResult;
+import org.example.grace.result.ResponseStatusEnum;
 import org.example.pojo.bo.QuestionLibBO;
+import org.example.pojo.vo.InitQuestionsVO;
 import org.example.serive.QuestionLibService;
 import org.example.utils.PagedGridResult;
 import org.springframework.web.bind.annotation.*;
@@ -81,4 +83,24 @@ public class QuestionLibController extends BaseInfoProperties {
         questionLibService.delete(questionLibId);
         return GraceJSONResult.ok();
     }
+
+    /**
+     * @Description: 准备面试题，随机获得一定数量的面试题返回给前端
+     * @param candidateId
+     * @return GraceJSONResult
+     */
+    @GetMapping("prepareQuestion")
+    public GraceJSONResult prepareQuestion(@RequestParam String candidateId) {
+
+        // 判断应聘者候选人是否在会话中，限制接口被恶意调用
+        String candidateInfo = redis.get(REDIS_USER_INFO + ":" + candidateId);
+        String userToken = redis.get(REDIS_USER_TOKEN + ":" + candidateId);
+        if (StringUtils.isBlank(candidateInfo) || StringUtils.isBlank(userToken)) {
+            return GraceJSONResult.errorCustom(ResponseStatusEnum.USER_INFO_NOT_EXIST_ERROR);
+        }
+
+        List<InitQuestionsVO> result = questionLibService.getRandomQuestions(candidateId, 2);
+        return GraceJSONResult.ok(result);
+    }
+
 }

@@ -1,7 +1,10 @@
 package org.example.serive;
 
 import org.example.pojo.bo.QuestionLibBO;
+import org.example.pojo.vo.InitQuestionsVO;
 import org.example.utils.PagedGridResult;
+
+import java.util.List;
 
 public interface QuestionLibService {
     /**
@@ -32,4 +35,12 @@ public interface QuestionLibService {
      * @Description: 删除面试题
      */
     public void delete(String questionLibId);
+
+    /**
+     * @Description: 获得指定数量的随机面试题
+     * @param candidateId
+     * @param questionNum
+     * @return List<InitQuestionsVO>
+     */
+    public List<InitQuestionsVO> getRandomQuestions(String candidateId, Integer questionNum);
 }
