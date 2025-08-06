@@ -3,22 +3,28 @@ package org.example.serive;
 import org.example.pojo.bo.QuestionLibBO;
 import org.example.utils.PagedGridResult;
 
-import java.util.List;
-
 public interface QuestionLibService {
     /**
-     * @Description: 创建或者更新题库
      * @param questionLibBO
+     * @Description: 创建或者更新题库
      */
     public void createOrUpdate(QuestionLibBO questionLibBO);
+
     /**
-     * @Description: 分页查询题库列表
      * @param aiName
      * @param question
      * @param page
      * @param pageSize
      * @return PagedGridResult
+     * @Description: 分页查询题库列表
      */
     public PagedGridResult queryList(String aiName, String question, Integer page, Integer pageSize);
+
+    /**
+     * @param questionLibId
+     * @param isOn
+     * @Description: 启用或者禁用某个面试题
+     */
+    public void setDisplayOrNot(String questionLibId, Integer isOn);
 
 }

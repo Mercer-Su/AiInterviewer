@@ -3,6 +3,7 @@ package org.example.controller;
 import jakarta.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.example.base.BaseInfoProperties;
+import org.example.enums.YesOrNo;
 import org.example.grace.result.GraceJSONResult;
 import org.example.pojo.bo.QuestionLibBO;
 import org.example.serive.QuestionLibService;
@@ -44,5 +45,16 @@ public class QuestionLibController extends BaseInfoProperties {
 
         PagedGridResult result = questionLibService.queryList(aiName, question, page, pageSize);
         return GraceJSONResult.ok(result);
+    }
+    /**
+     * @Description: 设置某个面试题显示（启用）
+     * @param questionLibId
+     * @return GraceJSONResult
+     */
+    @PostMapping("show")
+    public GraceJSONResult show(@RequestParam String questionLibId) {
+        if (StringUtils.isBlank(questionLibId)) return GraceJSONResult.error();
+        questionLibService.setDisplayOrNot(questionLibId, YesOrNo.YES.type);
+        return GraceJSONResult.ok();
     }
 }

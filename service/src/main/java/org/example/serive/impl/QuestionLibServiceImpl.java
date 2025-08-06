@@ -61,9 +61,20 @@ public class QuestionLibServiceImpl extends BaseInfoProperties implements Questi
             map.put("question", question);
         }
 
-        List<QuestionLibVO> list =  questionLibMapperCustom.queryQuestionLibList(map);
+        List<QuestionLibVO> list = questionLibMapperCustom.queryQuestionLibList(map);
 
         return setterPagedGrid(list, page);
+    }
+
+    @Override
+    public void setDisplayOrNot(String questionLibId, Integer isOn) {
+
+        QuestionLib questionLib = new QuestionLib();
+        questionLib.setId(questionLibId);
+        questionLib.setIsOn(isOn);
+        questionLib.setUpdatedTime(LocalDateTime.now());
+
+        questionLibMapper.updateById(questionLib);
     }
 }
 
