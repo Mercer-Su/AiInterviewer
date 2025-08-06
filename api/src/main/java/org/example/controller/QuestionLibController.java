@@ -57,4 +57,16 @@ public class QuestionLibController extends BaseInfoProperties {
         questionLibService.setDisplayOrNot(questionLibId, YesOrNo.YES.type);
         return GraceJSONResult.ok();
     }
+
+    /**
+     * @Description: 设置某个面试题隐藏（禁用）
+     * @param questionLibId
+     * @return GraceJSONResult
+     */
+    @PostMapping("hide")
+    public GraceJSONResult hide(@RequestParam String questionLibId) {
+        if (StringUtils.isBlank(questionLibId)) return GraceJSONResult.error();
+        questionLibService.setDisplayOrNot(questionLibId, YesOrNo.NO.type);
+        return GraceJSONResult.ok();
+    }
 }

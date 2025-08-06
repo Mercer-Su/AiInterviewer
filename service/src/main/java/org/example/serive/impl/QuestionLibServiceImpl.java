@@ -76,6 +76,12 @@ public class QuestionLibServiceImpl extends BaseInfoProperties implements Questi
 
         questionLibMapper.updateById(questionLib);
     }
+
+    @Override
+    public void delete(String questionLibId) {
+        questionLibMapper.deleteById(questionLibId);
+    }
+
 }
 
 

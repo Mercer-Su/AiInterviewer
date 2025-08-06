@@ -27,4 +27,9 @@ public interface QuestionLibService {
      */
     public void setDisplayOrNot(String questionLibId, Integer isOn);
 
+    /**
+     * @param questionLibId
+     * @Description: 删除面试题
+     */
+    public void delete(String questionLibId);
 }
