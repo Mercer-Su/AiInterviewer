@@ -6,7 +6,7 @@ import java.util.Map;
  * 自定义响应数据类型枚举升级版本
  *
  * @Title: GraceJSONResult.java
- * @Package com.juege.utils
+ * @Package org.example.utils
  * @Description: 自定义响应数据结构
  * 				本类可提供给 H5/ios/安卓//小程序 使用
  * 				前端接受此类数据（json object)后，可自行根据业务去实现相关功能

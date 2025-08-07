@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 @Data
-@PropertySource("classpath:tencentCloud")
+@PropertySource("classpath:tencentCloud.properties")
 @ConfigurationProperties(prefix = "tencent.cloud")
 public class TencentCloudProperties {
 
