@@ -46,9 +46,9 @@ public class SMSUtils {
             SendSmsRequest req = new SendSmsRequest();
             String[] phoneNumberSet1 = {"+86" + phone};//电话号码
             req.setPhoneNumberSet(phoneNumberSet1);
-            req.setSmsSdkAppId("1400568450");   // 短信应用ID: 短信SdkAppId在 [短信控制台] 添加应用后生成的实际SdkAppId
+            req.setSmsSdkAppId("");   // 短信应用ID: 短信SdkAppId在 [短信控制台] 添加应用后生成的实际SdkAppId
             req.setSignName("短信签名");         // 签名
-            req.setTemplateId("1108902");       // 模板id：必须填写已审核通过的模板 ID。模板ID可登录 [短信控制台] 查看
+            req.setTemplateId("");       // 模板id：必须填写已审核通过的模板 ID。模板ID可登录 [短信控制台] 查看
 
             /* 模板参数（自定义占位变量）: 若无模板参数，则设置为空 */
             String[] templateParamSet1 = {code};
