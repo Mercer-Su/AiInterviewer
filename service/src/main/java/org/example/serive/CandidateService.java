@@ -26,4 +26,10 @@ public interface CandidateService {
      * @return PagedGridResult
      */
     PagedGridResult queryList(String realName, String mobile, Integer page, Integer pageSize);
+
+    /**
+     * @Description: 删除候选人
+     * @param candidateId
+     */
+    public void delete(String candidateId);
 }

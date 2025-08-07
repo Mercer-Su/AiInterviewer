@@ -68,5 +68,9 @@ public class CandidateServiceImpl extends BaseInfoProperties implements Candidat
     public Candidate getDetail(String candidateId) {
         return candidateMapper.selectById(candidateId);
     }
+    @Override
+    public void delete(String candidateId) {
+        candidateMapper.deleteById(candidateId);
+    }
 
 }

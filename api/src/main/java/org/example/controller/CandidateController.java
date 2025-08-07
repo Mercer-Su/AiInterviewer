@@ -47,4 +47,24 @@ public class CandidateController {
         return GraceJSONResult.ok(result);
     }
 
+    /**
+     * @Description: 查询候选人
+     * @param candidateId
+     * @return GraceJSONResult
+     */
+    @GetMapping("detail")
+    public GraceJSONResult detail(@RequestParam String candidateId) {
+        return GraceJSONResult.ok(candidateService.getDetail(candidateId));
+    }
+
+    /**
+     * @Description: 删除候选人
+     * @param candidateId
+     * @return GraceJSONResult
+     */
+    @PostMapping("delete")
+    public GraceJSONResult delete(@RequestParam String candidateId) {
+        candidateService.delete(candidateId);
+        return GraceJSONResult.ok();
+    }
 }
