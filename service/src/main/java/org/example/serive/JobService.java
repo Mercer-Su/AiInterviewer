@@ -1,5 +1,6 @@
 package org.example.serive;
 
+import org.example.pojo.Job;
 import org.example.pojo.bo.JobBO;
 import org.example.utils.PagedGridResult;
 
@@ -21,6 +22,13 @@ public interface JobService {
      * @return PagedGridResult
      */
     public PagedGridResult queryList(Integer page, Integer pageSize);
+
+    /**
+     * @Description: 查询职位详情
+     * @param id
+     * @return Job
+     */
+    public Job getDetail(String id);
 
 
 }

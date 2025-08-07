@@ -54,5 +54,9 @@ public class JobServiceImpl extends BaseInfoProperties implements JobService {
         return setterPagedGrid(jobList, page);
     }
 
+    @Override
+    public Job getDetail(String id) {
+        return jobMapper.selectById(id);
+    }
 
 }

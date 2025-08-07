@@ -41,5 +41,16 @@ public class JobController {
         return GraceJSONResult.ok(jobService.queryList(page, pageSize));
     }
 
+    /**
+     * @Description: 查询职位详情
+     * @param jobId
+     * @return GraceJSONResult
+     */
+    @GetMapping("detail")
+    public GraceJSONResult detail(String jobId) {
+        return GraceJSONResult.ok(jobService.getDetail(jobId));
+    }
+
+
 
 }
