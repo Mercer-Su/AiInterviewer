@@ -21,6 +21,13 @@ target/
 .springBeans
 .sts4-cache
 
+# 忽略百度AI SDK文件
+BaiduAISDK.java
+# 忽略腾讯云配置文件
+tencentCloud.properties
+SMSUtils.java
+GLMTokenUtils.java
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
