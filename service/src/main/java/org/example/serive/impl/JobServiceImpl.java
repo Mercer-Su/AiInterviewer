@@ -64,5 +64,19 @@ public class JobServiceImpl extends BaseInfoProperties implements JobService {
         jobMapper.deleteById(id);
     }
 
+    @Override
+    public boolean isJobContainInterviewer(String InterviewerId) {
 
+        QueryWrapper<Job> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("interviewer_id", InterviewerId);
+
+        Long counts = jobMapper.selectCount(queryWrapper);
+
+        return counts > 0 ? true : false;
+    }
+
+    @Override
+    public List<HashMap<String, String>> nameList() {
+        return jobMapperCustom.queryNameList(null);
+    }
 }

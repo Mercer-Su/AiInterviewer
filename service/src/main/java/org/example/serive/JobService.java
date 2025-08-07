@@ -36,4 +36,17 @@ public interface JobService {
      */
     public void delete(String id);
 
+    /**
+     * @Description: 判断所有职位中是否包含某个面试官
+     * @param InterviewerId
+     * @return boolean
+     */
+    public boolean isJobContainInterviewer(String InterviewerId);
+
+    /**
+     * @Description: 获得所有岗位名称的列表
+     * @param
+     * @return List<HashMap<String,String>>
+     */
+    public List<HashMap<String, String>> nameList();
 }

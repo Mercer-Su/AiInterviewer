@@ -62,6 +62,14 @@ public class JobController {
         return GraceJSONResult.ok();
     }
 
-
+    /**
+     * @Description: 查询并且获得所有包含名称的岗位列表
+     * @param
+     * @return GraceJSONResult
+     */
+    @GetMapping("nameList")
+    public GraceJSONResult nameList() {
+        return GraceJSONResult.ok(jobService.nameList());
+    }
 
 }
