@@ -29,5 +29,17 @@ public class JobController {
         return GraceJSONResult.ok();
     }
 
+    /**
+     * @Description: 分页查询职位信息列表
+     * @param page
+     * @param pageSize
+     * @return GraceJSONResult
+     */
+    @GetMapping("list")
+    public GraceJSONResult list(@RequestParam(defaultValue = "1", name = "page") Integer page,
+                                @RequestParam(defaultValue = "10", name = "pageSize") Integer pageSize) {
+        return GraceJSONResult.ok(jobService.queryList(page, pageSize));
+    }
+
 
 }

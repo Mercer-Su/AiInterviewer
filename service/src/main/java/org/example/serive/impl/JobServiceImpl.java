@@ -16,6 +16,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * @ClassName JobServiceImpl
  * @Version 1.0
@@ -43,4 +46,13 @@ public class JobServiceImpl extends BaseInfoProperties implements JobService {
             jobMapper.updateById(job);
         }
     }
+
+    @Override
+    public PagedGridResult queryList(Integer page, Integer pageSize) {
+        PageHelper.startPage(page, pageSize);
+        List<JobVO> jobList = jobMapperCustom.queryJobList(null);
+        return setterPagedGrid(jobList, page);
+    }
+
+
 }
