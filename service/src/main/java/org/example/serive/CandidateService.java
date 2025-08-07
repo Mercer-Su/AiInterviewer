@@ -32,4 +32,11 @@ public interface CandidateService {
      * @param candidateId
      */
     public void delete(String candidateId);
+
+    /**
+     * @Description: 判断用户是否存在，如果存在返回用户信息，如果不存在返回null
+=     * @param mobile
+     * @return Candidate
+     */
+    public Candidate queryMobileIsExist(String mobile);
 }
