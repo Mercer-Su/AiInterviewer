@@ -30,4 +30,14 @@ public class InterviewerController {
         return GraceJSONResult.ok();
     }
 
+    /**
+     * @Description: 查询所有数字人面试官列表
+     * @param
+     * @return GraceJSONResult
+     */
+    @GetMapping("list")
+    public GraceJSONResult list() {
+        return GraceJSONResult.ok(interviewerService.queryAll());
+    }
+
 }

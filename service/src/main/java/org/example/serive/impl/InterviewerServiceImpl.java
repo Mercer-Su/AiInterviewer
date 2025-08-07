@@ -28,7 +28,6 @@ public class InterviewerServiceImpl implements InterviewerService {
     @Resource
     private InterviewerMapper interviewerMapper;
 
-
     @Override
     public void createOrUpdate(InterviewerBO interviewerBO) {
 
@@ -45,6 +44,14 @@ public class InterviewerServiceImpl implements InterviewerService {
 
     }
 
+    @Override
+    public List<Interviewer> queryAll() {
+        //根据更新时间排序
+        return interviewerMapper.selectList(
+                new QueryWrapper<Interviewer>()
+                        .orderByDesc("updated_time")
+        );
+    }
 
 
 }

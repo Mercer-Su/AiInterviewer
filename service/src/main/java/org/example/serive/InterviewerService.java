@@ -18,4 +18,11 @@ public interface InterviewerService {
      */
     public void createOrUpdate(InterviewerBO interviewerBO);
 
+    /**
+     * @Description: 查询所有的面试官数据列表
+     * @param
+     * @return List<Interviewer>
+     */
+    public List<Interviewer> queryAll();
+
 }
