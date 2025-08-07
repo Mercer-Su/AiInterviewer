@@ -30,5 +30,10 @@ public interface JobService {
      */
     public Job getDetail(String id);
 
+    /**
+     * @Description: 删除职位详情
+     * @param id
+     */
+    public void delete(String id);
 
 }

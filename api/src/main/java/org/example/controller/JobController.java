@@ -51,6 +51,17 @@ public class JobController {
         return GraceJSONResult.ok(jobService.getDetail(jobId));
     }
 
+    /**
+     * @Description: 删除职位详情
+     * @param jobId
+     * @return GraceJSONResult
+     */
+    @PostMapping("delete")
+    public GraceJSONResult delete(String jobId) {
+        jobService.delete(jobId);
+        return GraceJSONResult.ok();
+    }
+
 
 
 }

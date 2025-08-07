@@ -59,4 +59,10 @@ public class JobServiceImpl extends BaseInfoProperties implements JobService {
         return jobMapper.selectById(id);
     }
 
+    @Override
+    public void delete(String id) {
+        jobMapper.deleteById(id);
+    }
+
+
 }
