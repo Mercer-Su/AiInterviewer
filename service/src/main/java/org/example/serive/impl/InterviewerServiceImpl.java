@@ -28,6 +28,12 @@ public class InterviewerServiceImpl implements InterviewerService {
     @Resource
     private InterviewerMapper interviewerMapper;
 
+    @Resource
+    private JobService jobService;
+
+    @Resource
+    private QuestionLibService questionLibService;
+
     @Override
     public void createOrUpdate(InterviewerBO interviewerBO) {
 
@@ -53,5 +59,18 @@ public class InterviewerServiceImpl implements InterviewerService {
         );
     }
 
+    @Override
+    public void delete(String interviewerId) {
+
+        // 删除面试官之前需要判断有没有职位和面试题库正在使用（多表关联需要删除关联的数据）
+        boolean jobFlag = jobService.isJobContainInterviewer(interviewerId);
+        boolean questionFlag = questionLibService.isQuestionLibContainInterviewer(interviewerId);
+
+        if (jobFlag || questionFlag) {
+            GraceException.display(ResponseStatusEnum.CAN_NOT_DELETE_INTERVIEWER);
+        }
+
+        interviewerMapper.deleteById(interviewerId);
+    }
 
 }

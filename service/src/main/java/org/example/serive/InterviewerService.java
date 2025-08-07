@@ -25,4 +25,9 @@ public interface InterviewerService {
      */
     public List<Interviewer> queryAll();
 
+    /**
+     * @Description: 删除数字人面试官
+     * @param interviewerId
+     */
+    public void delete(String interviewerId);
 }

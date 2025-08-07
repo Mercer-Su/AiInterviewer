@@ -128,7 +128,15 @@ public class QuestionLibServiceImpl extends BaseInfoProperties implements Questi
 
         return questionList;
     }
+    @Override
+    public boolean isQuestionLibContainInterviewer(String InterviewerId) {
+        QueryWrapper<QuestionLib> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("interviewer_id", InterviewerId);
 
+        Long counts = questionLibMapper.selectCount(queryWrapper);
+
+        return counts > 0 ? true : false;
+    }
 }
 
 

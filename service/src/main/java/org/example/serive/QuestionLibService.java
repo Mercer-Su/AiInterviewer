@@ -37,10 +37,18 @@ public interface QuestionLibService {
     public void delete(String questionLibId);
 
     /**
-     * @Description: 获得指定数量的随机面试题
      * @param candidateId
      * @param questionNum
      * @return List<InitQuestionsVO>
+     * @Description: 获得指定数量的随机面试题
      */
     public List<InitQuestionsVO> getRandomQuestions(String candidateId, Integer questionNum);
+
+    /**
+     * @param InterviewerId
+     * @return boolean
+     * @Description: 判断所有面试题库中是否包含某个面试官
+     */
+    public boolean isQuestionLibContainInterviewer(String InterviewerId);
+
 }
