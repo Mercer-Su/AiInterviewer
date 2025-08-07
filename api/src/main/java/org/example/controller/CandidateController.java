@@ -29,5 +29,22 @@ public class CandidateController {
         candidateService.createOrUpdate(candidateBO);
         return GraceJSONResult.ok();
     }
-    
+
+    /**
+     * @Description: 条件搜索候选人的列表
+     * @param realName
+     * @param mobile
+     * @param page
+     * @param pageSize
+     * @return GraceJSONResult
+     */
+    @GetMapping("list")
+    public GraceJSONResult list(@RequestParam String realName,
+                                @RequestParam String mobile,
+                                @RequestParam(defaultValue = "1", name = "page") Integer page,
+                                @RequestParam(defaultValue = "10", name = "pageSize") Integer pageSize) {
+        PagedGridResult result = candidateService.queryList(realName, mobile, page, pageSize);
+        return GraceJSONResult.ok(result);
+    }
+
 }

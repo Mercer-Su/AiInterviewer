@@ -2,6 +2,7 @@ package org.example.serive;
 
 import org.example.pojo.Candidate;
 import org.example.pojo.bo.CandidateBO;
+import org.example.utils.PagedGridResult;
 
 public interface CandidateService {
     /**
@@ -15,4 +16,14 @@ public interface CandidateService {
      * @param candidateId
      */
     public Candidate getDetail(String candidateId);
+
+    /**
+     * @Description: 查询候选人（应聘者）列表
+     * @param realName
+     * @param mobile
+     * @param page
+     * @param pageSize
+     * @return PagedGridResult
+     */
+    PagedGridResult queryList(String realName, String mobile, Integer page, Integer pageSize);
 }
