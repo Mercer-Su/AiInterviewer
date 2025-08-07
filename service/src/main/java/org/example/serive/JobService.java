@@ -1,13 +1,13 @@
 package org.example.serive;
 
-import org.example.pojo.Job;
+import org.example.pojo.bo.JobBO;
 
 public interface JobService {
+
     /**
-     * @Description: 查询职位详情
-     * @param id
-     * @return Job
+     * @Description: 创建或者更新职位信息
+     * @param jobBO
      */
-    public Job getDetail(String id);
+    public void createOrUpdate(JobBO jobBO);
 
 }
