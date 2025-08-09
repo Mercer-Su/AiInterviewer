@@ -1,6 +1,5 @@
 package org.example.serive.impl;
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import jakarta.annotation.Resource;
@@ -8,19 +7,17 @@ import org.apache.commons.lang3.StringUtils;
 import org.example.base.BaseInfoProperties;
 import org.example.mapper.CandidateMapper;
 import org.example.mapper.CandidateMapperCustom;
-import org.example.pojo.Candidate;
 import org.example.pojo.bo.CandidateBO;
 import org.example.pojo.vo.CandidateVO;
 import org.example.serive.CandidateService;
 import org.example.utils.PagedGridResult;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-
+import org.example.pojo.Candidate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 /**
  * @ClassName CandidateServiceImpl
@@ -32,6 +29,7 @@ public class CandidateServiceImpl extends BaseInfoProperties implements Candidat
 
     @Resource
     private CandidateMapper candidateMapper;
+
     @Resource
     private CandidateMapperCustom candidateMapperCustom;
 
@@ -69,6 +67,7 @@ public class CandidateServiceImpl extends BaseInfoProperties implements Candidat
     public Candidate getDetail(String candidateId) {
         return candidateMapper.selectById(candidateId);
     }
+
     @Override
     public void delete(String candidateId) {
         candidateMapper.deleteById(candidateId);
@@ -77,9 +76,8 @@ public class CandidateServiceImpl extends BaseInfoProperties implements Candidat
     @Override
     public Candidate queryMobileIsExist(String mobile) {
         return candidateMapper.selectOne(
-                new QueryWrapper<Candidate>()
+                    new QueryWrapper<Candidate>()
                         .eq("mobile", mobile)
         );
     }
-
 }

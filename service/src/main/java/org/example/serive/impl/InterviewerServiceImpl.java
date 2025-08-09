@@ -73,4 +73,6 @@ public class InterviewerServiceImpl implements InterviewerService {
         interviewerMapper.deleteById(interviewerId);
     }
 
+
+
 }

@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * @ClassName QuestionLibController
+ * @Version 1.0
+ * @Description QuestionLibController
+ **/
 @RestController
 @RequestMapping("questionLib")
 public class QuestionLibController extends BaseInfoProperties {
@@ -21,16 +26,12 @@ public class QuestionLibController extends BaseInfoProperties {
     @Resource
     private QuestionLibService questionLibService;
 
-    /**
-     * 创建面试题
-     * @param questionLibBO
-     * @return
-     */
     @PostMapping("createOrUpdate")
     public GraceJSONResult createOrUpdate(@RequestBody QuestionLibBO questionLibBO) {
         questionLibService.createOrUpdate(questionLibBO);
         return GraceJSONResult.ok();
     }
+
     /**
      * @Description: 分页查询面试题库列表
      * @param aiName
@@ -48,6 +49,7 @@ public class QuestionLibController extends BaseInfoProperties {
         PagedGridResult result = questionLibService.queryList(aiName, question, page, pageSize);
         return GraceJSONResult.ok(result);
     }
+
     /**
      * @Description: 设置某个面试题显示（启用）
      * @param questionLibId

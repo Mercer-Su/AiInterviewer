@@ -1,5 +1,6 @@
 package org.example.serive.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import jakarta.annotation.Resource;
 import org.example.base.BaseInfoProperties;
@@ -25,15 +26,31 @@ public class InterviewRecordServiceImpl extends BaseInfoProperties implements In
 
     @Resource
     private InterviewRecordMapper interviewRecordMapper;
+
     @Resource
     private InterviewRecordMapperCustom interviewRecordMapperCustom;
+
     @Override
     public void save(InterviewRecord interviewRecord) {
         interviewRecordMapper.insert(interviewRecord);
     }
 
     @Override
+    public boolean isCandidateRecordExist(String candidateId) {
+
+        List<InterviewRecord> list = interviewRecordMapper.selectList(
+                new QueryWrapper<InterviewRecord>()
+                        .eq("candidate_id",candidateId)
+        );
+
+        if (list.isEmpty() || list.size() == 0) return false;
+
+        return true;
+    }
+
+    @Override
     public PagedGridResult queryList(String realName, String mobile, Integer page, Integer pageSize) {
+
         PageHelper.startPage(page, pageSize);
 
         Map<String, Object> map = new HashMap<>();

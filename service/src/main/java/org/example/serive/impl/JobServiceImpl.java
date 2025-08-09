@@ -7,13 +7,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.example.base.BaseInfoProperties;
 import org.example.mapper.JobMapper;
 import org.example.mapper.JobMapperCustom;
-import org.example.pojo.Job;
 import org.example.pojo.bo.JobBO;
 import org.example.pojo.vo.JobVO;
 import org.example.serive.JobService;
 import org.example.utils.PagedGridResult;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.example.pojo.Job;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;

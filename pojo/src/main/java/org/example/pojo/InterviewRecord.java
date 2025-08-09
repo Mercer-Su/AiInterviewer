@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
  * 面试记录表
  * </p>
  *
- * @since 2024-10-04
  */
 @TableName("interview_record")
 public class InterviewRecord implements Serializable {

@@ -22,7 +22,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.*;
 
-
 /**
  * @ClassName QuestionLibServiceImpl
  * @Version 1.0
@@ -33,15 +32,19 @@ public class QuestionLibServiceImpl extends BaseInfoProperties implements Questi
 
     @Resource
     private QuestionLibMapper questionLibMapper;
+
     @Resource
     private QuestionLibMapperCustom questionLibMapperCustom;
+
     @Resource
     private CandidateService candidateService;
+
     @Resource
     private JobService jobService;
 
     @Override
     public void createOrUpdate(QuestionLibBO questionLibBO) {
+
         QuestionLib questionLib = new QuestionLib();
         BeanUtils.copyProperties(questionLibBO, questionLib);
         questionLib.setUpdatedTime(LocalDateTime.now());
@@ -53,10 +56,12 @@ public class QuestionLibServiceImpl extends BaseInfoProperties implements Questi
         } else {
             questionLibMapper.updateById(questionLib);
         }
+
     }
 
     @Override
     public PagedGridResult queryList(String aiName, String question, Integer page, Integer pageSize) {
+
         PageHelper.startPage(page, pageSize);
 
         Map<String, Object> map = new HashMap<>();
@@ -67,7 +72,7 @@ public class QuestionLibServiceImpl extends BaseInfoProperties implements Questi
             map.put("question", question);
         }
 
-        List<QuestionLibVO> list = questionLibMapperCustom.queryQuestionLibList(map);
+        List<QuestionLibVO> list =  questionLibMapperCustom.queryQuestionLibList(map);
 
         return setterPagedGrid(list, page);
     }
@@ -89,26 +94,37 @@ public class QuestionLibServiceImpl extends BaseInfoProperties implements Questi
     }
 
     @Override
+    public boolean isQuestionLibContainInterviewer(String InterviewerId) {
+        QueryWrapper<QuestionLib> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("interviewer_id", InterviewerId);
+
+        Long counts = questionLibMapper.selectCount(queryWrapper);
+
+        return counts > 0 ? true : false;
+    }
+
+    @Override
     public List<InitQuestionsVO> getRandomQuestions(String candidateId, Integer questionNum) {
+
         // 1. 获得负责面试应聘者的面试官
         String jobId = candidateService.getDetail(candidateId).getJobId();
         String interviewerId = jobService.getDetail(jobId).getInterviewerId();
 
         // 2. 根据面试官获得其所有面试题总数
         Long questionCounts = questionLibMapper.selectCount(
-                new QueryWrapper<QuestionLib>()
-                        .eq("interviewer_id", interviewerId)
+            new QueryWrapper<QuestionLib>()
+                    .eq("interviewer_id", interviewerId)
         );
 
         // 3. 根据题库总数获得指定数量的面试题
         List<Long> randomList = new ArrayList<>();
-        for (int i = 0; i < questionNum; i++) {
+        for (int i = 0 ; i < questionNum ; i ++) {
             Random random = new Random();
             long randomNum = random.nextLong(questionCounts);
 
             if (randomList.contains(randomNum)) {
                 // 如果包含则继续循环，累加questionNum平衡循环次数
-                questionNum++;
+                questionNum ++;
                 System.out.println(questionNum);
                 continue;
             } else {
@@ -128,15 +144,4 @@ public class QuestionLibServiceImpl extends BaseInfoProperties implements Questi
 
         return questionList;
     }
-    @Override
-    public boolean isQuestionLibContainInterviewer(String InterviewerId) {
-        QueryWrapper<QuestionLib> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("interviewer_id", InterviewerId);
-
-        Long counts = questionLibMapper.selectCount(queryWrapper);
-
-        return counts > 0 ? true : false;
-    }
 }
-
-

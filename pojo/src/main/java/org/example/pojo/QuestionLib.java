@@ -9,9 +9,6 @@ import java.time.LocalDateTime;
  * <p>
  * 面试题库表（每个数字人面试官都会对应一些面试题）
  * </p>
- *
- * @author bilibili觉哥学Java
- * @since 2024-10-04
  */
 @TableName("question_lib")
 public class QuestionLib implements Serializable {
