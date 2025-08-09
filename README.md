@@ -8,15 +8,15 @@
 
 ## 🛠️ 主要数据库表关系
 
-![Untitled diagram _ Mermaid Chart-2025-08-09-103734](D:/WorkSoftWare/Untitled%20diagram%20_%20Mermaid%20Chart-2025-08-09-103734.png)
+![Untitled diagram _ Mermaid Chart-2025-08-09-103734](img/Untitled%20diagram%20_%20Mermaid%20Chart-2025-08-09-103734.png)
 
 ### 核心实体
 
-![Untitled diagram _ Mermaid Chart-2025-08-09-103859](D:/WorkSoftWare/Untitled%20diagram%20_%20Mermaid%20Chart-2025-08-09-103859.png)
+![Untitled diagram _ Mermaid Chart-2025-08-09-103859](img/Untitled%20diagram%20_%20Mermaid%20Chart-2025-08-09-103859.png)
 
 ### 数据流
 
-![Untitled diagram _ Mermaid Chart-2025-08-09-103954](D:/WorkSoftWare/Untitled%20diagram%20_%20Mermaid%20Chart-2025-08-09-103954.png)
+![Untitled diagram _ Mermaid Chart-2025-08-09-103954](img/Untitled%20diagram%20_%20Mermaid%20Chart-2025-08-09-103954.png)
 
 ## 🌈 创新亮点
 
