@@ -4,7 +4,7 @@
 
 ## 🛠️ 技术架构
 
-![Untitled diagram _ Mermaid Chart-2025-08-09-102922](D:/WorkSoftWare/Untitled%20diagram%20_%20Mermaid%20Chart-2025-08-09-102922.png)
+![Untitled diagram _ Mermaid Chart-2025-08-09-102922](img/Untitled%20diagram%20_%20Mermaid%20Chart-2025-08-09-102922.png)
 
 ## 🛠️ 主要数据库表关系
 
