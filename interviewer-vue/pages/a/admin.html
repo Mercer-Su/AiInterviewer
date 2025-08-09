@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+	
+	
+	<!-- 第三方 -->
+	<!-- <link rel="stylesheet" href="../../libs/element-ui/index.css"> -->
+	<!-- <link rel="stylesheet" href="../../libs/element-2.15.13/index.css"> -->
+	<link rel="stylesheet" href="../../css/theme/style/theme/index.css">
+	<!-- <link rel="stylesheet" href="https://unpkg.com/element-ui@2.15.13/lib/theme-chalk/index.css"> -->
+	<!-- <link rel="stylesheet" href="../../libs/cherry-markdown/dist/cherry-markdown.css"> -->
+	<!-- <link rel="stylesheet" href="https://unpkg.com/cherry-markdown@0.8.40/dist/cherry-markdown.min.css"> -->
+	
+	<link rel="stylesheet" type="text/css" href="../../css/app.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/admin/mng.css"/>
+	
+
+	<style type="text/css">
+	</style>
+
+	<link rel="shortcut icon" href="../../img/logo/itzixi.ico" type="image/x-icon">
+
+	<title>觉哥技术团队 · 管理中心&综合管理平台</title>
+</head>
+
+<body>
+	<div id="dashboardPage" class="container">
+
+		<el-container class="dashboard-in-one">
+			<el-aside width="200px" class="menu-container">
+				<div class="logo-box">
+					<!-- 1781 × 662 -->
+					<img src="../../img/logo/juege-tech-text-logo.png" height="50px" width="134px" class="itzixi-logo"/>
+				</div>
+				
+				<!-- <el-menu
+					class=""
+					@open="handleOpen"
+					@close="handleClose"
+					@select="handleSelect"
+					>
+						<el-submenu index="1">
+							<template slot="title">
+								<i class="el-icon-location"></i>
+								<span>网站管理</span>
+							</template>
+							<el-menu-item index="1-1"><i class="el-icon-document"></i>选项1</el-menu-item>
+							<el-menu-item index="1-2">选项2</el-menu-item>
+						</el-submenu>
+						<el-menu-item index="2">
+							<i class="el-icon-menu"></i>
+							<span slot="title">导航二</span>
+						</el-menu-item>
+						<el-submenu index="3">
+							<template slot="title">
+								<i class="el-icon-location"></i>
+								<span>设置</span>
+							</template>
+							<el-menu-item index="3-1"><i class="el-icon-document"></i>账号信息</i></el-menu-item>
+						</el-submenu>
+				</el-menu> -->
+
+				<!-- :default-active="activeMenu" -->
+				<el-menu @select="handleSelect" :default-active="activeMenu" ref="leeMenu">
+					<div v-for="item in menuList" :key="item.path">
+						<span v-show="item.role == currentRole">
+							<el-menu-item v-if="item.children.length === 0" :index="item.index" @click="saveRoutePath(item.index)">
+								<i :class="item.icon"></i>
+								<span slot="title">{{item.title}}</span>
+							</el-menu-item>
+							<el-submenu v-else :index="item.index">
+								<template slot="title">
+									<i :class="item.icon"></i>
+									<span slot="title">{{item.title}}</span>
+								</template>
+								<el-menu-item-group>
+									<div v-for="item1 in item.children" :key="item1.path">
+										<el-menu-item v-if="item1.children.length === 0" :index="item1.index" @click="saveRoutePath(item1.index)">
+											<i :class="item1.icon"></i>
+											<span slot="title">{{item1.title}}</span>
+										</el-menu-item>
+										<el-submenu v-else :index="item1.index" @click="saveRoutePath(item1.index)">
+											<template slot="title">
+												<i :class="item1.icon"></i>
+												<span v-show="!isCollapse" slot="title">{{item1.title}}</span>
+											</template>
+											<el-menu-item-group>
+												<div v-for="item2 in item1.children" :key="item2.path">
+												<el-menu-item v-if="item2.children.length === 0" :index="item2.index" @click="saveRoutePath(item2.index)">
+													<i :class="item2.icon"></i>
+													<span slot="title">{{item2.title}}</span>
+												</el-menu-item>
+												<el-submenu v-else :index="item2.index" @click="saveRoutePath(item2.index)">
+													<template slot="title">
+														<i :class="item2.icon"></i>
+														<span slot="title">{{item2.title}}</span>
+													</template>
+													<el-menu-item-group>
+													<div v-for="item3 in item2.children" :key="item3.path">
+														<el-menu-item v-if="item3.children.length === 0" :index="item3.index" @click="saveRoutePath(item3.index)">
+															<i :class="item3.icon"></i>
+															<span slot="title">{{item3.title}}</span>
+														</el-menu-item>
+													</div>
+													</el-menu-item-group>
+												</el-submenu>
+												</div>
+											</el-menu-item-group>
+										</el-submenu>
+									</div>
+								</el-menu-item-group>
+							</el-submenu>
+						</span>
+					</div>
+				</el-menu>
+
+			</el-aside>
+			<el-container>
+				<el-header class="header-container">
+
+					<div class="header-box">
+					</div>
+
+				</el-header>	
+				<el-main class="main-container">
+					
+					<!-- 路由出口 -->
+					<!-- 路由匹配到的组件将渲染在这里 -->
+					<transition mode="out-in">
+						<router-view @changemenuformrouteview="updateSelectedMenu"></router-view>
+						<!-- <router-view @resetmenu="changeActiveMenu"></router-view> -->
+					</transition>
+
+					<!-- <router-link to="/login">登陆</router-link>
+					<router-link to="/register">注册</router-link>
+					<router-link to="/register">外部引入</router-link> -->
+					
+					<!-- <my-component></my-component> -->
+				</el-main>
+			</el-container>
+		</el-container>
+
+	</div>
+</body>
+
+<script src="../../libs/vue.min.js"></script>
+<script src="../../libs/axios.min.js"></script>
+<script src="../../libs/jquery-3.4.1.min.js"></script>
+<script src="../../libs/js.cookie.min.js"></script>
+<script src="../../js/app.js"></script>
+
+<script src="../../libs/sweetalert.min.js"></script>
+<!-- <script src="../../libs/element-ui/index.js"></script> -->
+<script src="../../libs/element-2.15.13/index.js"></script>
+<!-- <script src="https://unpkg.com/element-ui@2.15.13/lib/index.js"></script> -->
+
+<script src="../../libs/vue-router.js"></script>
+<script src="../../libs/httpVueLoader.js"></script>
+<!-- <script src="../../libs/cherry-markdown/dist/cherry-markdown.min.js"></script> -->
+<!-- <script src="https://unpkg.com/cherry-markdown@0.8.40/dist/cherry-markdown.min.js"></script> -->
+
+<script src="./adminrouter.js"></script>
+
+<script src="../../js/cookieUtils.js"></script>
+<script src="../../js/request.js"></script>
+<script src="../../js/apis/admin/interviewerApi.js"></script>
+<script src="../../js/apis/admin/jobApi.js"></script>
+<script src="../../js/apis/admin/questionLibApi.js"></script>
+<script src="../../js/apis/admin/candidateApi.js"></script>
+<script src="../../js/apis/admin/interviewerRecordApi.js"></script>
+
+<script>
+
+	// var routes = [
+	// 	{ path: '/', component: login },
+	// 	{ path: '/login', component: login },
+	// 	{ path: '/register', component: httpVueLoader('my-component.vue') }
+	// ]
+
+	// const routes = [
+	// 	{ path: '/dashboard', component: dashboard },
+	// 	// { path: '/publishMng', component: publishMng },
+	// 	{ path: '/publishMng/publishContent', component: publishContent },
+	// 	{ path: '/publishMng/contentMng', component: contentMng },
+	// 	// { path: '/settings', component: settings },
+	// 	{ path: '/settings/userInfo', component: userInfo },
+	// ]
+
+	const routes = myrouter.routes;
+
+	var router = new VueRouter({
+		routes // (缩写) 相当于 routes: routes
+	})
+
+	var dashboardPage = new Vue({
+		el: "#dashboardPage",
+		components: {
+			// 'my-component': httpVueLoader('my-component.vue')
+        },
+		router: router, 
+		data() {
+			return {
+				// currentRole: 1,
+				currentRole: 1,
+				userInfo: {},
+
+				activeMenu: "dashboard",
+
+				isCollapse : true,
+				routerList: [],
+				menuList: [
+					// { title: '控制面板', path: '/dashboard', index: 'dashboard', component: dashboard, icon: 'el-icon-data-line', children: [] },
+					// { title: '发布管理', path: '/publishMng', index: 'publishMng', component: publishMng, icon: 'el-icon-film', children: [
+					// 		{ title: '发布内容', path: '/publishMng/publishContent', index: 'publishContent', component: publishContent, icon: 'el-icon-set-up', children: [] },
+					// 		{ title: '内容管理', path: '/publishMng/contentMng', index: 'contentMng', component: contentMng, icon: 'el-icon-set-up', children: [] },
+					// 	]
+					// },
+					// { title: '设置', path: '/settings', index: 'settings', component: settings, icon: 'el-icon-film', children: [
+					// 		{ title: '账户信息', path: '/settings/userInfo', index: 'userInfo',component: userInfo,  icon: 'el-icon-set-up', children: []},
+					// 	]
+					// },
+				],
+			}
+		},
+		created() { 
+			var me = this;
+			// 通过cookie判断用户是否登录
+			// app.judgeUserLoginStatus(me);
+			
+			// 从引入的外部router.js中赋值menuList
+			// console.log(myrouter.menuList);
+			this.menuList = myrouter.menuList;
+			// 设置路由的列表
+			// this.setRouterList(this.menuList);
+
+			// console.log(this.$router)
+			// console.log(this.$route.currentRoute);
+			// console.log(this.$route.params.m);
+
+			// localStorage.setItem("path", "msgCenter");
+			var routePath = sessionStorage.getItem("path");
+			console.log("routePath = " + routePath);
+			if (routePath != null && routePath != "" && routePath != undefined) {
+				this.activeMenu = routePath;
+				// sessionStorage.setItem("path", null);
+			}
+			
+			// var userInfo = cookieUtils.getUserInfo();
+			// var userToken = cookieUtils.getToken();
+			// this.userInfo = userInfo;
+			// // console.log(userInfo);
+			// // 没有信息，则退出
+			// if (userInfo == null || userInfo == undefined || userToken == null || userToken == undefined) {
+			// 	window.location = "/index.html";
+			// }
+
+			// // 如果不是admin，直接退出
+			// if (userInfo.role != 1) {
+			// 	cookieUtils.removeToken();
+			// 	cookieUtils.removeUserInfo();
+			// 	window.location = "/index.html";
+			// }
+		},
+		mounted() {
+			// console.log(this.$route.currentRoute);
+			// console.log(this.$route.params.m);
+			console.log("mounted this.activeMenu = " + this.activeMenu);
+
+		},
+		watch: {
+		},
+		methods: {
+			handleDropdown(command) {
+				if (command === "logout") {
+					this.logout();
+				}
+			},
+
+			logout() {
+				// var userInfo = this.userInfo;
+
+				// var bo = {
+				// 	userId: userInfo.id
+				// }
+				// login.logout(bo).then(response => {
+				// 	// console.log(response);
+				// 	cookieUtils.removeToken();
+				// 	cookieUtils.removeUserInfo();
+				// 	window.location = "/index.html";
+				// });
+			},
+
+			updateSelectedMenu(index) {
+				console.log("fatherMethod index = " + index);
+				this.saveRoutePath(index);
+				this.activeMenu = index;
+			}, 
+
+			// changeActiveMenu(targetIndex) {
+			// 	// console.log("targetIndex = " + targetIndex);
+
+			// 	sessionStorage.setItem("path", targetIndex);
+			// 	this.activeMenu = targetIndex;
+			// 	console.log("this.activeMenu = " + this.activeMenu);
+
+			// 	// this.$refs.leeMenu.activedIndex = targetIndex;
+			// },
+
+			saveRoutePath(index) {
+				sessionStorage.setItem("path", index);
+			},
+
+			// 设置路由列表
+			setRouterList(menuList) {
+				menuList.forEach(item => {
+					if(item.children.length === 0) {
+						this.routerList[item.index] = item.path;
+					} else {
+						this.setRouterList(item.children);
+					}
+				});
+				// console.log(this.routerList);
+			},
+
+			// handleOpen(key, keyPath) {
+			// 	console.log(key, keyPath);
+			// },
+			// handleClose(key, keyPath) {
+			// 	console.log(key, keyPath);
+			// },
+
+			handleSelect(key, keyPath) {
+				// console.log(key, keyPath);
+				// console.log(keyPath);
+
+				var path = "/" + keyPath[0];
+				if (keyPath[1] != null && keyPath[1] != undefined) {
+					path = "/" + keyPath[0] + "/" + keyPath[1];
+				}
+				// console.log(path);
+				this.$router.push({path: path});
+			},
+
+
+		}
+	});
+
+</script>
+
+</html>
