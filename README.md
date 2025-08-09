@@ -49,7 +49,7 @@ https://229fix-my.sharepoint.com/:x:/g/personal/rec_tvfix_org/ETsddPHSZo1EtuXq_C
 https://ai-studio-online.bj.bcebos.com/v1/0e1f7f7973664580b148778bff48dff64310433fcda04816879de604c6420938?responseContentDisposition=attachment%3B%20filename%3D%E5%8E%9F%E7%A5%9E%E8%AF%AD%E9%9F%B3%E5%8C%854.8%EF%BC%88%E9%9F%A9%EF%BC%89.7z&authorization=bce-auth-v1%2F5cfe9a5e1454405eb2a975c43eace6ec%2F2024-07-16T02%3A54%3A19Z%2F-1%2F%2F850aab9798464cf5395105e0dede1032f94220
 ```
 
-![1ef35da8-6fe7-4a6c-b593-0a88c6d1064b](D:/WorkSoftWare/1ef35da8-6fe7-4a6c-b593-0a88c6d1064b.png)
+![1ef35da8-6fe7-4a6c-b593-0a88c6d1064b](img/1ef35da8-6fe7-4a6c-b593-0a88c6d1064b.png)
 
 ### 数字人生成
 
